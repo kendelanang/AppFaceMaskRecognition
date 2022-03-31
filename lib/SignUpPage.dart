@@ -33,6 +33,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: scaffoldKey,
       backgroundColor: const Color(0xFF263238),
       body: SafeArea(
@@ -285,7 +286,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                               if (!res) {
                                 print("signup failed");
                                 Fluttertoast.showToast(
-                                    msg: "Sign Up Faild! :(",
+                                    msg: "Sign Up Failed! :(",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,

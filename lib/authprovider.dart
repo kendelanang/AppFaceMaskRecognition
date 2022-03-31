@@ -12,7 +12,7 @@ class AuthProvider {
       User user = result.user;
       if (user != null) {
         Fluttertoast.showToast(
-            msg: "Login succefully :)",
+            msg: "Login succesfully :)",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
@@ -27,13 +27,15 @@ class AuthProvider {
   }
 
   Future<bool> createUserWithemail(
-      String nama, String email, String password) async {
+      String displayName, String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
       if (user != null) {
-        await _auth.currentUser.updateProfile(displayName: nama);
+        user.updateDisplayName(displayName);
+        await user.reload();
+        user = await _auth.currentUser;
         Fluttertoast.showToast(
             msg: "SignUp succefully :)",
             toastLength: Toast.LENGTH_LONG,

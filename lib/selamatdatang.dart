@@ -73,7 +73,7 @@ class _BangetWidgetState extends State<BangetWidget> {
                   ),
                 ),
                 Text(
-                  '${user.email}',
+                  ' selamat datang',
                   style: GoogleFonts.lexendDeca(
                     fontSize: 20,
                   ),
