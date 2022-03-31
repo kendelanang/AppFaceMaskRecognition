@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1019636202693",
+    "project_id": "facemaskrecognition-8c4ca",
+    "storage_bucket": "facemaskrecognition-8c4ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019636202693:android:e2479ca4d93ab32b06c4ac",
+        "android_client_info": {
+          "package_name": "com.example.coba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019636202693-m5cmbjgn61lrsf1gg3m5435c9uqfb5sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWjI3CW5YXIFaU5-5Dd7r1SxplLGADeho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019636202693-m5cmbjgn61lrsf1gg3m5435c9uqfb5sg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
