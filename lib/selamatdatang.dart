@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:coba/authprovider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class BangetWidget extends StatefulWidget {
   const BangetWidget({Key key}) : super(key: key);
@@ -16,6 +19,15 @@ class _BangetWidgetState extends State<BangetWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User user;
   bool isloggedin = false;
+  File _image;
+  final imagePicker = ImagePicker();
+
+  Future getImage() async {
+    final image = await imagePicker.getImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(image.path);
+    });
+  }
 
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
@@ -49,10 +61,11 @@ class _BangetWidgetState extends State<BangetWidget> {
     this.getUser();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: scaffoldKey,
+      backgroundColor: Color(0xFF263238),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -60,25 +73,96 @@ class _BangetWidgetState extends State<BangetWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0x00EEEEEE),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Halo, ${user.displayName}',
-                  style: GoogleFonts.lexendDeca(
-                    fontSize: 20,
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Selamat datang, ',
+                          style: GoogleFonts.lexendDeca(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          user?.displayName ?? '',
+                          style: GoogleFonts.lexendDeca(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Text(
-                  ' selamat datang',
-                  style: GoogleFonts.lexendDeca(
-                    fontSize: 20,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Capture wajah untuk di training',
+                          style: GoogleFonts.lexendDeca(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFEEEEEE),
+                      ),
+                      child: _image == null
+                          ? Text("Belum Ada Foto")
+                          : Image.file(_image),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFFF0A500),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100))),
+                      onPressed: () async {
+                        getImage();
+                        Fluttertoast.showToast(
+                            msg: "Anda menekan button login",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: const Color(0xFFF0A500),
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      },
+                      child: Text(
+                        "Capture",
+                        style: GoogleFonts.lexendDeca(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -5,6 +5,8 @@ MERGED from [:firebase_auth] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognitio
 MERGED from [:firebase_auth] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
 MERGED from [:url_launcher] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\cea45e25bbe77c9713c39e234ccfd7bd\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
@@ -40,6 +42,8 @@ MERGED from C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\android\app\src
 MERGED from [:shared_preferences_android] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_auth] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:fluttertoast] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
@@ -49,6 +53,7 @@ MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\iya\.gradle\caches\tr
 MERGED from [com.google.firebase:firebase-auth:21.0.2] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\ea9dd2db373322964c942699ea3d16dd\jetified-firebase-auth-21.0.2\AndroidManifest.xml:17:1-73:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:20.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b25e52f5739b5665d39d607baa2467f6\jetified-firebase-common-20.1.0\AndroidManifest.xml:15:1-40:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b7a4bedb3ae5643a7a7af8bc9a9af596\exifinterface-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\6627ebe7ef94065a47e7e8e9d66c6a9d\jetified-play-services-base-17.1.0\AndroidManifest.xml:17:1-29:12
@@ -75,8 +80,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\iya\.gra
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\3b4820e24d46e21c89efa32f5c2d6e2e\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\d303dc6bb1b59f5c94a63e6083442da7\jetified-firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\5408995d19686f9d35f8a810d9d7986f\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\e8863814c459b83896fb72460c5f5555\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\fe7136c18bf90ce15610c08732e73d45\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\c08dcac29cefcadf912758ee4601aef8\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -110,6 +115,10 @@ MERGED from [:firebase_auth] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognitio
 MERGED from [:firebase_auth] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:fluttertoast] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -128,6 +137,8 @@ MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\iya\.gra
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:20.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b25e52f5739b5665d39d607baa2467f6\jetified-firebase-common-20.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-common:20.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b25e52f5739b5665d39d607baa2467f6\jetified-firebase-common-20.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b7a4bedb3ae5643a7a7af8bc9a9af596\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b7a4bedb3ae5643a7a7af8bc9a9af596\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
@@ -180,10 +191,10 @@ MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\iya\.gradl
 MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\d303dc6bb1b59f5c94a63e6083442da7\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\5408995d19686f9d35f8a810d9d7986f\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\5408995d19686f9d35f8a810d9d7986f\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\2a7f1fd9e53de4d9b5d232b69f7dc1ae\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\e8863814c459b83896fb72460c5f5555\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\e8863814c459b83896fb72460c5f5555\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\iya\.gradle\caches\transforms-2\files-2.1\fe7136c18bf90ce15610c08732e73d45\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
@@ -238,6 +249,22 @@ ADDED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition
 		ADDED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+	android:grantUriPermissions
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+	android:authorities
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+	android:exported
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+	android:resource
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+	android:name
+		ADDED from [:image_picker] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
 activity#io.flutter.plugins.urllauncher.WebViewActivity
 ADDED from [:url_launcher] C:\Users\iya\Documents\GitHub\AppFaceMaskRecognition\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
 	android:exported
