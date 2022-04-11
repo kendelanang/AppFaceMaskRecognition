@@ -1,10 +1,12 @@
 // ignore_for_file: file_names
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coba/authprovider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignUpPageWidget extends StatefulWidget {
   const SignUpPageWidget({Key key}) : super(key: key);
@@ -21,6 +23,12 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  var nama = '',
+      email = '',
+      password = '',
+      imageUrl =
+          'https://firebasestorage.googleapis.com/v0/b/facemaskrecognition-8c4ca.appspot.com/o/userImage%2F1461141.png?alt=media&token=62964631-eb3b-4744-b3da-9357c7350058';
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +40,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final users = FirebaseFirestore.instance.collection('users');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: scaffoldKey,
@@ -138,10 +147,13 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                   const EdgeInsetsDirectional.fromSTEB(
                                       16, 24, 0, 24),
                               prefixIcon: const Icon(
-                                Icons.email,
+                                Icons.person,
                                 color: Color(0xFF263238),
                               ),
                             ),
+                            onChanged: (value) {
+                              nama = value;
+                            },
                             style: GoogleFonts.lexendDeca(
                               color: const Color(0xFF2B343A),
                               fontSize: 14,
@@ -184,6 +196,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                 color: Color(0xFF263238),
                               ),
                             ),
+                            onChanged: (value) {
+                              email = value;
+                            },
                             style: GoogleFonts.lexendDeca(
                               color: const Color(0xFF2B343A),
                               fontSize: 14,
@@ -240,6 +255,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                 ),
                               ),
                             ),
+                            onChanged: (value) {
+                              password = value;
+                            },
                             style: GoogleFonts.lexendDeca(
                               color: const Color(0xFF2B343A),
                               fontSize: 14,
@@ -283,6 +301,18 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                       _namaController.text,
                                       _emailController.text,
                                       _passwordController.text);
+
+                              users
+                                  .doc(_auth.currentUser.uid)
+                                  .set({
+                                    'nama': nama,
+                                    'email': email,
+                                    'password': password,
+                                    'imageUrl': imageUrl
+                                  })
+                                  .then((value) => print('User Added'))
+                                  .catchError((error) =>
+                                      print('Failed to add user $error'));
                               if (!res) {
                                 print("signup failed");
                                 Fluttertoast.showToast(
