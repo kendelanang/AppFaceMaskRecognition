@@ -34,6 +34,13 @@ class _BangetWidgetState extends State<BangetWidget> {
       'https://firebasestorage.googleapis.com/v0/b/facemaskrecognition-8c4ca.appspot.com/o/userImage%2F1461141.png?alt=media&token=62964631-eb3b-4744-b3da-9357c7350058';
   final imagePicker = ImagePicker();
 
+  @override
+  void initState() {
+    this.checkAuthentification();
+    getData();
+    super.initState();
+  }
+
   Future getData() async {
     User user = _auth.currentUser;
     _uid = user.uid;
@@ -81,13 +88,6 @@ class _BangetWidgetState extends State<BangetWidget> {
     _auth.signOut();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    this.checkAuthentification();
-    getData();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -121,7 +121,7 @@ class _BangetWidgetState extends State<BangetWidget> {
                           ),
                         ),
                         Text(
-                          _auth.currentUser.displayName,
+                          _name,
                           style: GoogleFonts.lexendDeca(
                             color: Colors.white,
                             fontSize: 20,
@@ -156,9 +156,7 @@ class _BangetWidgetState extends State<BangetWidget> {
                         decoration: BoxDecoration(
                           color: Color.fromARGB(0, 238, 238, 238),
                         ),
-                        child: _image == null
-                            ? Image.network(cuba)
-                            : Image.network(url)),
+                        child: Image.network(_userImageUrl)),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
