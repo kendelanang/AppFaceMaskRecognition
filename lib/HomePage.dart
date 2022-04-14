@@ -1,10 +1,14 @@
 // ignore_for_file: file_names
+import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:coba/selamatdatang.dart';
+import 'package:coba/test.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'SignUpPage.dart';
 import 'package:coba/authprovider.dart';
+
+import 'package:coba/loading.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -106,7 +110,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         controller: _emailController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Masukan Username atau Email',
+                          hintText: 'Masukan Email',
                           hintStyle: GoogleFonts.lexendDeca(
                             color: const Color(0xFF95A1AC),
                             fontSize: 14,
@@ -208,8 +212,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         onPressed: () async {
                           if (_emailController.text.isEmpty ||
                               _passwordController.text.isEmpty) {
+                            CircularProgressIndicator();
                             Fluttertoast.showToast(
-                                msg: "Please fill the two feilds !! ",
+                                msg: "Tolong isi kedua form !! ",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,
@@ -219,6 +224,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             print("Email and password Tidak boleh kosong");
                             return;
                           }
+
                           bool res = await AuthProvider().signInWithEmail(
                               _emailController.text, _passwordController.text);
 
@@ -235,8 +241,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           } else {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => BangetWidget()),
+                              CircularClipRoute<void>(
+                                  expandFrom: context,
+                                  builder: (context) => TestPage()),
                             );
                           }
                           Fluttertoast.showToast(
@@ -281,7 +288,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 fontSize: 16.0);
                             await Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              CircularClipRoute<void>(
+                                expandFrom: context,
                                 builder: (context) => const SignUpPageWidget(),
                               ),
                             );

@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -286,7 +287,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                               if (_emailController.text.isEmpty ||
                                   _passwordController.text.isEmpty) {
                                 Fluttertoast.showToast(
-                                    msg: "Please fill the two feilds !! ",
+                                    msg: "Tolong isi Semua Form !! ",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,
@@ -330,14 +331,6 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                                       builder: (context) => HomePageWidget()),
                                 );
                               }
-                              Fluttertoast.showToast(
-                                  msg: "Anda menekan button Daftar",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: const Color(0xFFF0A500),
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
                             },
                             child: Text(
                               "Daftar",
@@ -362,17 +355,10 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                             ),
                             TextButton(
                               onPressed: () async {
-                                Fluttertoast.showToast(
-                                    msg: "Anda Menekan Button Login",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: const Color(0xFFF0A500),
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
                                 await Navigator.push(
                                   context,
-                                  MaterialPageRoute(
+                                  CircularClipRoute<void>(
+                                    expandFrom: context,
                                     builder: (context) =>
                                         const HomePageWidget(),
                                   ),

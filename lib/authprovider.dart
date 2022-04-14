@@ -12,7 +12,7 @@ class AuthProvider {
       User user = result.user;
       if (user != null) {
         Fluttertoast.showToast(
-            msg: "Login succesfully :)",
+            msg: "Login Berhasil :)",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
