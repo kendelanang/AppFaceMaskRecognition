@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       key: scaffoldKey,
-      backgroundColor: const Color(0xFF263238),
+      backgroundColor: Colors.amber,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -52,8 +52,8 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Image.asset(
                         'assets/images/kndlbunder.png',
-                        width: 52,
-                        height: 52,
+                        width: 50,
+                        height: 50,
                         fit: BoxFit.cover,
                       ),
                       Padding(

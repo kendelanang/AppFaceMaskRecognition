@@ -64,8 +64,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                     children: [
                       Image.asset(
                         'assets/images/kndlbunder.png',
-                        width: 52,
-                        height: 52,
+                        width: 50,
+                        height: 50,
                         fit: BoxFit.cover,
                       ),
                       Padding(

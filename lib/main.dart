@@ -1,3 +1,4 @@
+import 'package:coba/Dashboard.dart';
 import 'package:coba/LoginPage.dart';
 import 'package:coba/CapturePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const AutoLogin(),
+      home: Dashboard(),
       debugShowCheckedModeBanner: false,
     );
   }
