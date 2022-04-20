@@ -1,3 +1,7 @@
+avatar_glow
+2.12
+file:///C:/src/flutter/.pub-cache/git/avatar_glow-e3378bb374b7f3caaa87391ebb301392a57f482a/
+file:///C:/src/flutter/.pub-cache/git/avatar_glow-e3378bb374b7f3caaa87391ebb301392a57f482a/lib/
 async
 2.12
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.2/
@@ -194,10 +198,6 @@ meta
 2.12
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0/
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0/lib/
-nested
-2.12
-file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/
-file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/lib/
 octo_image
 2.12
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/octo_image-1.0.1/
@@ -254,10 +254,6 @@ process
 2.14
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/lib/
-provider
-2.7
-file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.3/
-file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.3/lib/
 rxdart
 2.12
 file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.3/

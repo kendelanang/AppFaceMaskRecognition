@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:coba/Loading.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 class CapturePage extends StatefulWidget {
   const CapturePage({Key key}) : super(key: key);
@@ -77,6 +78,21 @@ class _CapturePageState extends State<CapturePage> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                AvatarGlow(
+                                  endRadius: 30.0,
+                                  child: Material(
+                                    // Replace this child with your own
+                                    elevation: 8.0,
+                                    shape: CircleBorder(),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.grey[100],
+                                      backgroundImage: NetworkImage(
+                                        _imageUrl,
+                                      ),
+                                      radius: 20.0,
+                                    ),
+                                  ),
+                                ),
                                 Text(
                                   'Selamat datang, ',
                                   style: GoogleFonts.lexendDeca(
@@ -118,14 +134,28 @@ class _CapturePageState extends State<CapturePage> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: Container(
-                                width: 250,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(0, 238, 238, 238),
-                                ),
-                                child: snapshot.connectionState ==
-                                        ConnectionState.waiting
-                                    ? Loading()
-                                    : Image.network(_imageUrl)),
+                              width: 250,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(0, 238, 238, 238),
+                              ),
+                              child: snapshot.connectionState ==
+                                      ConnectionState.none
+                                  ? Loading()
+                                  : Image.network(_imageUrl, frameBuilder:
+                                      (context, child, frame,
+                                          wasSynchronouslyLoaded) {
+                                      return child;
+                                    }, loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return Container(
+                                          child: Loading(),
+                                        );
+                                      }
+                                    }),
+                            ),
                           ),
                           Padding(
                             padding:
@@ -148,55 +178,48 @@ class _CapturePageState extends State<CapturePage> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                            child: FloatingActionButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return Expanded(
-                                      child: AlertDialog(
-                                        title: Text('Logout'),
-                                        content: Text('Yakin Mau Logout?'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              AuthProvider().logOut();
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          AutoLogin()));
-                                            },
-                                            child: Text(
-                                              'YES',
-                                            ),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text(
-                                              'NO',
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              backgroundColor: const Color(0xFFF0A500),
-                              child: const Icon(Icons.logout),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Logout'),
+                        content: Text('Yakin Mau Logout?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              AuthProvider().logOut();
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyApp()));
+                            },
+                            child: Text(
+                              'YES',
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'NO',
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                backgroundColor: const Color(0xFFF0A500),
+                child: const Icon(Icons.logout),
               ),
             );
           } else {

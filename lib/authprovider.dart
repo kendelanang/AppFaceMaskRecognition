@@ -14,7 +14,6 @@ class AuthProvider {
             msg: "Login Berhasil :)",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
             fontSize: 13.0);
         return true;
       } else
@@ -39,9 +38,6 @@ class AuthProvider {
             msg: "SignUp succefully :)",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            //backgroundColor: Colors.red,
-            //textColor: Colors.white,
             fontSize: 13.0);
         return true;
       } else
