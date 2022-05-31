@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:coba/CapturePage.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SignUpPage.dart';
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final rdatabase = FirebaseDatabase.instance.reference();
 
   @override
   void initState() {
@@ -29,10 +31,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cobacobi = rdatabase.child('/cobi');
+
+    int _counter = 0;
+    void _incrementCounter() {
+      setState(() {
+        _counter++;
+      });
+    }
+
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       key: scaffoldKey,
-      backgroundColor: Colors.amber,
+      backgroundColor: const Color(0xFF263238),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -213,6 +224,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (_emailController.text.isEmpty ||
                                 _passwordController.text.isEmpty) {
                               CircularProgressIndicator();
+
                               const snackBar = SnackBar(
                                 content: Text(
                                     'Email atau Password Tidak Boleh Kosong :('),
@@ -238,12 +250,19 @@ class _LoginPageState extends State<LoginPage> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             } else {
-                              Navigator.push(
-                                context,
-                                CircularClipRoute<void>(
-                                    expandFrom: context,
-                                    builder: (context) => CapturePage()),
-                              );
+                              try {
+                                _incrementCounter();
+                                await cobacobi.set({'TLogin': '$_counter'});
+                                Navigator.push(
+                                  context,
+                                  CircularClipRoute<void>(
+                                      expandFrom: context,
+                                      builder: (context) => CapturePage()),
+                                );
+                                print('babi');
+                              } catch (e) {
+                                print('anying error $e');
+                              }
                             }
                           },
                           child: Text(

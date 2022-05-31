@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Dashboard(),
+      home: AutoLogin(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -40,7 +40,7 @@ class AutoLogin extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return CapturePage();
+            return Dashboard();
           } else {
             return LoginPage();
           }
