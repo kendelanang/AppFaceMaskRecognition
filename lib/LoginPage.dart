@@ -19,7 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final rdatabase = FirebaseDatabase.instance.reference();
+  final rdatabase = FirebaseDatabase.instance.ref();
+  int _counter = 0;
 
   @override
   void initState() {
@@ -27,13 +28,22 @@ class _LoginPageState extends State<LoginPage> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     passwordVisibility = false;
+    _activateListener();
+  }
+
+  void _activateListener() {
+    rdatabase.child('cobi/TLogin').onValue.listen((event) {
+      final int jumlah = event.snapshot.value;
+      setState(() {
+        _counter = jumlah;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final cobacobi = rdatabase.child('/cobi');
 
-    int _counter = 0;
     void _incrementCounter() {
       setState(() {
         _counter++;
@@ -252,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                             } else {
                               try {
                                 _incrementCounter();
-                                await cobacobi.set({'TLogin': '$_counter'});
+                                await cobacobi.set({'TLogin': _counter});
                                 Navigator.push(
                                   context,
                                   CircularClipRoute<void>(

@@ -71,7 +71,7 @@ class _CapturePageState extends State<CapturePage> {
                     color: Color(0x00EEEEEE),
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -96,15 +96,7 @@ class _CapturePageState extends State<CapturePage> {
                                 ),
                               ),
                               Text(
-                                'Selamat datang, ',
-                                style: GoogleFonts.lexendDeca(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                _nama,
+                                'Selamat datang \n' + _nama,
                                 style: GoogleFonts.lexendDeca(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -115,7 +107,7 @@ class _CapturePageState extends State<CapturePage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -21,13 +21,37 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _rdatabase = FirebaseDatabase.instance.ref();
   final _imagePicker = ImagePicker();
-  String _displayTotalLogin = '1';
+  int _displayTotalLogin;
   String _url;
   String _uid;
 
   @override
+  void initState() {
+    super.initState();
+    _activateListener();
+  }
+
+  void _activateListener() {
+    _rdatabase.child('cobi/TLogin').onValue.listen((event) {
+      final int jumlah = event.snapshot.value;
+      setState(() {
+        _displayTotalLogin = jumlah;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final cobacobi = _rdatabase.child('/cobi');
+
+    void _decrementCounter() {
+      setState(() {
+        _displayTotalLogin--;
+      });
+    }
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('users')
@@ -48,7 +72,7 @@ class _DashboardState extends State<Dashboard> {
                   width: double.infinity,
                   height: double.infinity,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -72,20 +96,12 @@ class _DashboardState extends State<Dashboard> {
                                         backgroundImage: NetworkImage(
                                           _imageUrl,
                                         ),
-                                        radius: 20.0,
+                                        radius: 22.0,
                                       ),
                                     ),
                                   ),
                                   Text(
-                                    'Selamat datang, ',
-                                    style: GoogleFonts.lexendDeca(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    _nama,
+                                    'Selamat datang \n' + _nama,
                                     style: GoogleFonts.lexendDeca(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -159,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 20, 0, 0),
                                       child: Text(
-                                        _displayTotalLogin,
+                                        "$_displayTotalLogin",
                                         style: GoogleFonts.lexendDeca(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -197,33 +213,6 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFFF0A500),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100))),
-                            onPressed: () async {
-                              final rep = FirebaseDatabase.instance.ref();
-                              final snepsot =
-                                  await rep.child('cobi/TLogin').get();
-                              if (snepsot.exists) {
-                                _displayTotalLogin = snepsot.value;
-                                print(snepsot.value);
-                              } else {
-                                print('No data available.');
-                              }
-                            },
-                            child: Text(
-                              "Refresh",
-                              style: GoogleFonts.lexendDeca(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -240,7 +229,15 @@ class _DashboardState extends State<Dashboard> {
                       content: Text('Yakin Mau Logout?'),
                       actions: <Widget>[
                         TextButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            try {
+                              _decrementCounter();
+                              await cobacobi
+                                  .set({'TLogin': _displayTotalLogin});
+                              print('babi');
+                            } catch (e) {
+                              print('anying error $e');
+                            }
                             AuthProvider().logOut();
                             Navigator.pushReplacement(
                                 context,
