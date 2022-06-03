@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coba/Dashboard.dart';
 import 'package:coba/authprovider.dart';
 import 'package:coba/main.dart';
+import 'package:coba/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -68,40 +69,44 @@ class _CapturePageState extends State<CapturePage> {
                         SizedBox(height: 20),
 
                         //Avatar dan Nama
-                        Row(
-                          children: [
-                            AvatarGlow(
-                                glowColor: Colors.deepPurple,
-                                endRadius: 30.0,
-                                child: Material(
-                                  // Replace this child with your own
-                                  elevation: 8.0,
-                                  shape: CircleBorder(),
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.deepPurple,
-                                    backgroundImage: NetworkImage(
-                                      _imageUrl,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AvatarGlow(
+                                  glowColor: Colors.deepPurple,
+                                  endRadius: 30.0,
+                                  child: Material(
+                                    // Replace this child with your own
+                                    elevation: 8.0,
+                                    shape: CircleBorder(),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.deepPurple,
+                                      backgroundImage: NetworkImage(
+                                        _imageUrl,
+                                      ),
+                                      radius: 20.0,
                                     ),
-                                    radius: 20.0,
-                                  ),
-                                )),
-                            Text(
-                              'Selamat datang, ',
-                              style: GoogleFonts.lexendDeca(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                  )),
+                              Text(
+                                'Selamat datang, ',
+                                style: GoogleFonts.lexendDeca(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              _nama,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.lexendDeca(
-                                color: Colors.deepPurple,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                _nama,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.lexendDeca(
+                                  color: Colors.deepPurple,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
 
                         SizedBox(height: 20),
@@ -177,28 +182,29 @@ class _CapturePageState extends State<CapturePage> {
                         ),
                         SizedBox(height: 20),
 
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 14),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.deepPurple,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                CircularClipRoute<void>(
-                                  expandFrom: context,
-                                  builder: (context) => const Dashboard(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Dashboard",
-                              style: GoogleFonts.lexendDeca(
-                                color: Colors.white,
-                                fontSize: 20,
+                        Text(
+                          'Sudah cocok?',
+                          style: GoogleFonts.lexendDeca(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              CircularClipRoute<void>(
+                                expandFrom: context,
+                                builder: (context) => const navigation(),
                               ),
+                            );
+                          },
+                          child: Text(
+                            "Buka Dashboard",
+                            style: GoogleFonts.lexendDeca(
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

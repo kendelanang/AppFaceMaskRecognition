@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coba/CapturePage.dart';
+import 'package:coba/LoginPage.dart';
 import 'package:coba/authprovider.dart';
 import 'package:coba/loading.dart';
 import 'package:coba/main.dart';
@@ -72,41 +73,45 @@ class _DashboardState extends State<Dashboard> {
                         const SizedBox(height: 20),
 
                         //Avatar dan Nama
-                        Row(
-                          children: [
-                            AvatarGlow(
-                              glowColor: Colors.deepPurple,
-                              endRadius: 30.0,
-                              child: Material(
-                                // Replace this child with your own
-                                elevation: 8.0,
-                                shape: const CircleBorder(),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.grey[100],
-                                  backgroundImage: NetworkImage(
-                                    _imageUrl,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AvatarGlow(
+                                glowColor: Colors.deepPurple,
+                                endRadius: 30.0,
+                                child: Material(
+                                  // Replace this child with your own
+                                  elevation: 8.0,
+                                  shape: const CircleBorder(),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.grey[100],
+                                    backgroundImage: NetworkImage(
+                                      _imageUrl,
+                                    ),
+                                    radius: 22.0,
                                   ),
-                                  radius: 22.0,
                                 ),
                               ),
-                            ),
-                            Text(
-                              'Selamat datang, ',
-                              style: GoogleFonts.lexendDeca(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                'Selamat datang, ',
+                                style: GoogleFonts.lexendDeca(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              _nama,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.lexendDeca(
-                                color: Colors.deepPurple,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                _nama,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.lexendDeca(
+                                  color: Colors.deepPurple,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 20),
 
@@ -175,31 +180,38 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.deepPurple,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100))),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                CircularClipRoute<void>(
-                                  expandFrom: context,
-                                  builder: (context) => const CapturePage(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Capture Image Lagi",
+                        const SizedBox(height: 20),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Capture Image Lagi? ',
                               style: GoogleFonts.lexendDeca(
-                                color: Colors.white,
                                 fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  CircularClipRoute<void>(
+                                    expandFrom: context,
+                                    builder: (context) => const CapturePage(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Buka Kamera",
+                                style: GoogleFonts.lexendDeca(
+                                  color: Colors.deepPurple,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
