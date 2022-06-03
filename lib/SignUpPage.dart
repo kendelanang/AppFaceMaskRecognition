@@ -19,13 +19,12 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
   TextEditingController _emailController;
   TextEditingController _namaController;
   TextEditingController _passwordController;
-  bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _passwordVisibility;
 
-  var nama = '',
-      email = '',
-      password = '',
-      imageUrl =
+  var _nama = '',
+      _email = '',
+      _password = '',
+      _imageUrl =
           'https://firebasestorage.googleapis.com/v0/b/facemaskrecognition-8c4ca.appspot.com/o/userImage%2F1461141.png?alt=media&token=62964631-eb3b-4744-b3da-9357c7350058';
 
   @override
@@ -34,233 +33,188 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
     _emailController = TextEditingController();
     _namaController = TextEditingController();
     _passwordController = TextEditingController();
-    passwordVisibility = false;
+    _passwordVisibility = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    final users = FirebaseFirestore.instance.collection('users');
+    final _users = FirebaseFirestore.instance.collection('users');
+
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
-      key: scaffoldKey,
-      backgroundColor: const Color(0xFF263238),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-          child: SingleChildScrollView(
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(height: 75),
+                //Logo
+                Image.asset('assets/images/black.png', width: 70, height: 70),
+                SizedBox(height: 25),
+                //Sambutan
+                Text('Halo, Selamat Datang di',
+                    style: GoogleFonts.lexendDeca(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    )),
+                SizedBox(height: 10),
+                Text('Kendelanang',
+                    style: GoogleFonts.lexendDeca(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    )),
+                Text('Face & Mask Recognition',
+                    style: GoogleFonts.lexendDeca(
+                      fontSize: 16,
+                      color: Colors.grey[800],
+                    )),
+                SizedBox(height: 50),
+
+                //input username
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 90, 0, 90),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/kndlbunder.png',
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Kendelanang',
-                              style: GoogleFonts.lexendDeca(
-                                color: Colors.white,
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Face & Mask Recognition',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.lexendDeca(
-                                color: const Color(0xFF90A4AE),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Daftar',
-                      style: GoogleFonts.lexendDeca(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
                         color: Colors.white,
-                        fontSize: 25,
-                      ),
+                        border: Border.all(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _namaController,
+                            obscureText: false,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                              hintText: 'Masukan Nama Panggilan',
+                              hintStyle: GoogleFonts.lexendDeca(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _nama = value;
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _namaController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: 'Masukan Nama Panggilan',
-                            hintStyle: GoogleFonts.lexendDeca(
-                              color: const Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding:
-                                const EdgeInsetsDirectional.fromSTEB(
-                                    16, 24, 0, 24),
-                            prefixIcon: const Icon(
-                              Icons.person,
-                              color: Color(0xFF263238),
-                            ),
-                          ),
-                          onChanged: (value) {
-                            nama = value;
-                          },
-                          style: GoogleFonts.lexendDeca(
-                            color: const Color(0xFF2B343A),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
+                SizedBox(height: 10),
+
+                //input email
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _emailController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintText: 'Masukan Email',
-                            hintStyle: GoogleFonts.lexendDeca(
-                              color: const Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding:
-                                const EdgeInsetsDirectional.fromSTEB(
-                                    16, 24, 0, 24),
-                            prefixIcon: const Icon(
-                              Icons.email,
-                              color: Color(0xFF263238),
-                            ),
-                          ),
-                          onChanged: (value) {
-                            email = value;
-                          },
-                          style: GoogleFonts.lexendDeca(
-                            color: const Color(0xFF2B343A),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: !passwordVisibility,
-                          decoration: InputDecoration(
-                            hintText: 'Masukan Password',
-                            hintStyle: GoogleFonts.lexendDeca(
-                              color: const Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding:
-                                const EdgeInsetsDirectional.fromSTEB(
-                                    16, 24, 0, 24),
-                            prefixIcon: const Icon(
-                              Icons.lock,
-                              color: Color(0xFF263238),
-                              size: 20,
-                            ),
-                            suffixIcon: InkWell(
-                              onTap: () => setState(
-                                () => passwordVisibility = !passwordVisibility,
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _emailController,
+                            obscureText: false,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              hintStyle: GoogleFonts.lexendDeca(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
                               ),
-                              child: Icon(
-                                passwordVisibility
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: const Color(0xFF2B343A),
-                                size: 22,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.black54,
                               ),
                             ),
-                          ),
-                          onChanged: (value) {
-                            password = value;
-                          },
-                          style: GoogleFonts.lexendDeca(
-                            color: const Color(0xFF2B343A),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
+                            onChanged: (value) {
+                              _email = value;
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
+                SizedBox(height: 10),
+
+                //input password
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: !_passwordVisibility,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                              hintText: 'Kata Sandi',
+                              hintStyle: GoogleFonts.lexendDeca(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Colors.black54,
+                              ),
+                              suffixIcon: InkWell(
+                                onTap: () => setState(() =>
+                                    _passwordVisibility = !_passwordVisibility),
+                                child: Icon(
+                                    _passwordVisibility
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined,
+                                    color: Colors.black54,
+                                    size: 22),
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _password = value;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -268,10 +222,15 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                         width: 130,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFFF0A500),
+                              primary: Colors.deepPurple,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(100))),
+                                  borderRadius: BorderRadius.circular(30))),
                           onPressed: () async {
+                            bool res = await AuthProvider().createUserWithemail(
+                                _namaController.text,
+                                _emailController.text,
+                                _passwordController.text);
+
                             if (_namaController.text.isEmpty ||
                                 _emailController.text.isEmpty ||
                                 _passwordController.text.isEmpty) {
@@ -284,18 +243,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                               print("Email and password cannot be empty");
                               return;
                             }
-                            bool res = await AuthProvider().createUserWithemail(
-                                _namaController.text,
-                                _emailController.text,
-                                _passwordController.text);
 
-                            users
+                            _users
                                 .doc(_auth.currentUser.uid)
                                 .set({
-                                  'nama': nama,
-                                  'email': email,
-                                  'password': password,
-                                  'imageUrl': imageUrl
+                                  'nama': _nama,
+                                  'email': _email,
+                                  'password': _password,
+                                  'imageUrl': _imageUrl,
                                 })
                                 .then((value) => print('User Added'))
                                 .catchError((error) =>
@@ -326,13 +281,12 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                         ),
                       ),
                       Column(
-                        mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             'Sudah punya akun?',
                             style: GoogleFonts.lexendDeca(
-                              color: Colors.white,
+                              color: Colors.black54,
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -350,7 +304,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                             child: Text(
                               "Login",
                               style: GoogleFonts.lexendDeca(
-                                color: const Color(0xFFF0A500),
+                                color: Colors.deepPurple,
                                 fontSize: 20,
                               ),
                             ),

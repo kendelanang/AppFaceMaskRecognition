@@ -10,7 +10,7 @@ class Loading extends StatelessWidget {
       color: Color.fromARGB(0, 215, 204, 200),
       child: Center(
         child: SpinKitFoldingCube(
-          color: Color(0xFFF0A500),
+          color: Colors.deepPurple,
           size: 50.0,
         ),
       ),

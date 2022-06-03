@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coba/Dashboard.dart';
-import 'package:coba/SignUpPage.dart';
 import 'package:coba/authprovider.dart';
 import 'package:coba/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,8 +22,6 @@ class CapturePage extends StatefulWidget {
 class _CapturePageState extends State<CapturePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _imagePicker = ImagePicker();
-  String _url;
-  String _uid;
 
   getImage() async {
     final _compressImage = await _imagePicker.pickImage(
@@ -46,76 +43,78 @@ class _CapturePageState extends State<CapturePage> {
 
   @override
   Widget build(BuildContext context) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
+    final _path = FirebaseFirestore.instance
+        .collection('users')
+        .doc(_auth.currentUser.uid)
+        .snapshots();
+
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('users')
-          .doc(_auth.currentUser.uid)
-          .snapshots(),
+      stream: _path,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var document = snapshot.data;
           String _imageUrl = document["imageUrl"];
           String _nama = document["nama"];
+
           return Scaffold(
-            resizeToAvoidBottomInset: false,
-            key: scaffoldKey,
-            backgroundColor: Color(0xFF263238),
+            backgroundColor: Colors.grey[200],
             body: SafeArea(
               child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0x00EEEEEE),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                child: SingleChildScrollView(
+                  child: Center(
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              AvatarGlow(
+                        SizedBox(height: 20),
+
+                        //Avatar dan Nama
+                        Row(
+                          children: [
+                            AvatarGlow(
+                                glowColor: Colors.deepPurple,
                                 endRadius: 30.0,
                                 child: Material(
                                   // Replace this child with your own
                                   elevation: 8.0,
                                   shape: CircleBorder(),
                                   child: CircleAvatar(
-                                    backgroundColor: Colors.grey[100],
+                                    backgroundColor: Colors.deepPurple,
                                     backgroundImage: NetworkImage(
                                       _imageUrl,
                                     ),
                                     radius: 20.0,
                                   ),
-                                ),
+                                )),
+                            Text(
+                              'Selamat datang, ',
+                              style: GoogleFonts.lexendDeca(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'Selamat datang \n' + _nama,
-                                style: GoogleFonts.lexendDeca(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            ),
+                            Text(
+                              _nama,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.lexendDeca(
+                                color: Colors.deepPurple,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+
+                        SizedBox(height: 20),
+
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                          padding: EdgeInsets.symmetric(horizontal: 14),
                           child: Row(
-                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'Capture wajah untuk di training',
                                 style: GoogleFonts.lexendDeca(
-                                  color: Colors.white,
+                                  color: Colors.grey[800],
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -123,12 +122,15 @@ class _CapturePageState extends State<CapturePage> {
                             ],
                           ),
                         ),
+
+                        SizedBox(height: 20),
+
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding: EdgeInsets.symmetric(horizontal: 14),
                           child: Container(
                             width: 250,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(0, 238, 238, 238),
+                              color: Colors.transparent,
                             ),
                             child:
                                 snapshot.connectionState == ConnectionState.none
@@ -152,13 +154,15 @@ class _CapturePageState extends State<CapturePage> {
                                       ),
                           ),
                         ),
+                        SizedBox(height: 20),
+
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding: EdgeInsets.symmetric(horizontal: 14),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFFF0A500),
+                                primary: Colors.deepPurple,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100))),
+                                    borderRadius: BorderRadius.circular(30))),
                             onPressed: () {
                               getImage();
                             },
@@ -171,13 +175,15 @@ class _CapturePageState extends State<CapturePage> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 20),
+
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding: EdgeInsets.symmetric(horizontal: 14),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFFF0A500),
+                                primary: Colors.deepPurple,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100))),
+                                    borderRadius: BorderRadius.circular(30))),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -236,7 +242,7 @@ class _CapturePageState extends State<CapturePage> {
                   },
                 );
               },
-              backgroundColor: const Color(0xFFF0A500),
+              backgroundColor: Colors.deepPurple,
               child: const Icon(Icons.logout),
             ),
           );

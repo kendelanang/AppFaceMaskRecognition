@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key key}) : super(key: key);
@@ -19,13 +19,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _rdatabase = FirebaseDatabase.instance.ref();
-  final _imagePicker = ImagePicker();
   int _displayTotalLogin;
-  String _url;
-  String _uid;
 
   @override
   void initState() {
@@ -35,121 +31,110 @@ class _DashboardState extends State<Dashboard> {
 
   void _activateListener() {
     _rdatabase.child('cobi/TLogin').onValue.listen((event) {
-      final int jumlah = event.snapshot.value;
+      final int _jumlahLogin = event.snapshot.value;
       setState(() {
-        _displayTotalLogin = jumlah;
+        _displayTotalLogin = _jumlahLogin;
       });
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _displayTotalLogin--;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final cobacobi = _rdatabase.child('/cobi');
-
-    void _decrementCounter() {
-      setState(() {
-        _displayTotalLogin--;
-      });
-    }
+    final _path = _rdatabase.child('/cobi');
+    final _dbpath = FirebaseFirestore.instance
+        .collection('users')
+        .doc(_auth.currentUser.uid)
+        .snapshots();
 
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('users')
-          .doc(_auth.currentUser.uid)
-          .snapshots(),
+      stream: _dbpath,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var document = snapshot.data;
           String _imageUrl = document["imageUrl"];
           String _nama = document["nama"];
+
           return Scaffold(
-            key: scaffoldKey,
-            backgroundColor: Colors.blueGrey[900],
+            backgroundColor: Colors.grey[200],
             body: SafeArea(
               child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                child: SingleChildScrollView(
+                  child: Center(
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
                       children: [
+                        const SizedBox(height: 20),
+
+                        //Avatar dan Nama
                         Row(
-                          mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  AvatarGlow(
-                                    endRadius: 30.0,
-                                    child: Material(
-                                      // Replace this child with your own
-                                      elevation: 8.0,
-                                      shape: CircleBorder(),
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.grey[100],
-                                        backgroundImage: NetworkImage(
-                                          _imageUrl,
-                                        ),
-                                        radius: 22.0,
-                                      ),
-                                    ),
+                            AvatarGlow(
+                              glowColor: Colors.deepPurple,
+                              endRadius: 30.0,
+                              child: Material(
+                                // Replace this child with your own
+                                elevation: 8.0,
+                                shape: const CircleBorder(),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.grey[100],
+                                  backgroundImage: NetworkImage(
+                                    _imageUrl,
                                   ),
-                                  Text(
-                                    'Selamat datang \n' + _nama,
-                                    style: GoogleFonts.lexendDeca(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                                  radius: 22.0,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              'Selamat datang, ',
+                              style: GoogleFonts.lexendDeca(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              _nama,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.lexendDeca(
+                                color: Colors.deepPurple,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
+                        const SizedBox(height: 20),
+
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
                           child: Container(
                             width: double.infinity,
                             height: 150,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.topRight,
                                   colors: <Color>[
-                                    Colors.amber,
-                                    Colors.amber[900],
+                                    Colors.deepPurple,
+                                    Colors.deepPurpleAccent,
                                   ]),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 20, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 20, 0, 0),
                                       child: Text(
-                                        'Status : ',
-                                        style: GoogleFonts.lexendDeca(
-                                          color: Colors.white,
-                                          fontSize: 40,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 20, 0, 0),
-                                      child: Text(
-                                        'Login',
+                                        'Status : Login',
                                         style: GoogleFonts.lexendDeca(
                                           color: Colors.white,
                                           fontSize: 40,
@@ -161,8 +146,9 @@ class _DashboardState extends State<Dashboard> {
                                 Row(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 20, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 20, 0, 0),
                                       child: Text(
                                         'Jumlah tamu saat ini : ',
                                         style: GoogleFonts.lexendDeca(
@@ -172,8 +158,9 @@ class _DashboardState extends State<Dashboard> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 20, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 20, 0, 0),
                                       child: Text(
                                         "$_displayTotalLogin",
                                         style: GoogleFonts.lexendDeca(
@@ -189,10 +176,11 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFFF0A500),
+                                primary: Colors.deepPurple,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100))),
                             onPressed: () {
@@ -225,15 +213,14 @@ class _DashboardState extends State<Dashboard> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Logout'),
-                      content: Text('Yakin Mau Logout?'),
+                      title: const Text('Logout'),
+                      content: const Text('Yakin Mau Logout?'),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () async {
                             try {
                               _decrementCounter();
-                              await cobacobi
-                                  .set({'TLogin': _displayTotalLogin});
+                              await _path.set({'TLogin': _displayTotalLogin});
                               print('babi');
                             } catch (e) {
                               print('anying error $e');
@@ -242,9 +229,9 @@ class _DashboardState extends State<Dashboard> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyApp()));
+                                    builder: (context) => const MyApp()));
                           },
-                          child: Text(
+                          child: const Text(
                             'YES',
                           ),
                         ),
@@ -252,7 +239,7 @@ class _DashboardState extends State<Dashboard> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text(
+                          child: const Text(
                             'NO',
                           ),
                         ),
@@ -261,12 +248,12 @@ class _DashboardState extends State<Dashboard> {
                   },
                 );
               },
-              backgroundColor: const Color(0xFFF0A500),
+              backgroundColor: Colors.deepPurple,
               child: const Icon(Icons.logout),
             ),
           );
         } else {
-          return Loading();
+          return const Loading();
         }
       },
     );
