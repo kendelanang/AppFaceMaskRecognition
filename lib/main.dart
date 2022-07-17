@@ -1,6 +1,4 @@
-import 'package:coba/Dashboard.dart';
 import 'package:coba/LoginPage.dart';
-import 'package:coba/CapturePage.dart';
 import 'package:coba/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,20 +23,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AutoLogiin(),
+      home: const AutoLogin(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class AutoLogiin extends StatefulWidget {
-  const AutoLogiin({Key key}) : super(key: key);
+class AutoLogin extends StatefulWidget {
+  const AutoLogin({Key key}) : super(key: key);
 
   @override
-  State<AutoLogiin> createState() => _AutoLogiinState();
+  State<AutoLogin> createState() => _AutoLoginState();
 }
 
-class _AutoLogiinState extends State<AutoLogiin> {
+class _AutoLoginState extends State<AutoLogin> {
   int index = 0;
 
   @override
@@ -48,9 +46,9 @@ class _AutoLogiinState extends State<AutoLogiin> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return navigation();
+            return const navigation();
           } else {
-            return LoginPage();
+            return const LoginPage();
           }
         },
       ),
